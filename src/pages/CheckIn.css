@@ -1,0 +1,187 @@
+.checkin-dashboard {
+  padding: 10px;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.checkin-header {
+  margin-bottom: 24px;
+}
+
+.checkin-header h1 {
+  font-size: 2rem;
+  color: #111827;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.checkin-header p {
+  color: #6b7280;
+  font-size: 1.05rem;
+}
+
+.checkin-layout {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 24px;
+}
+
+.checkin-panel {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.panel-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #f3f4f6;
+  padding-bottom: 12px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.checkin-select, .checkin-input {
+  width: 100%;
+  padding: 14px;
+  background: #f9fafb;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 1rem;
+  color: #111827;
+  box-sizing: border-box;
+}
+
+.checkin-input:focus, .checkin-select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.search-results {
+  margin-top: 16px;
+}
+
+.search-result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: all 0.2s ease;
+}
+
+.search-result-item:hover {
+  border-color: #3b82f6;
+  background: #eff6ff;
+}
+
+.member-name {
+  font-weight: 600;
+  color: #111827;
+}
+
+.member-meta {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.checkin-btn {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.checkin-btn:hover {
+  background: #2563eb;
+}
+
+.roster-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.roster-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #f3f4f6;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.roster-item:last-child {
+  border-bottom: none;
+}
+
+.roster-avatar {
+  background: #10b981;
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.time-stamp {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.empty-state {
+  color: #9ca3af;
+  font-style: italic;
+  font-size: 0.95rem;
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* ========================
+   RESPONSIVE — Check-In
+======================== */
+@media (max-width: 992px) {
+  .checkin-layout {
+    grid-template-columns: 1fr;
+  }
+  .checkin-header h1 { font-size: 1.6rem; }
+}
+
+@media (max-width: 768px) {
+  .checkin-dashboard { padding: 6px; }
+  .checkin-header { margin-bottom: 16px; }
+  .checkin-header h1 { font-size: 1.35rem; margin-bottom: 4px; }
+  .checkin-header p { font-size: 0.875rem; }
+  .checkin-layout { gap: 14px; }
+  .checkin-panel { padding: 16px; }
+  .panel-title { font-size: 1.05rem; }
+  .search-result-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .checkin-btn { width: 100%; text-align: center; padding: 10px; }
+  .attendance-stats-banner { flex-direction: column; gap: 6px; text-align: center; }
+  .stats-count { font-size: 2rem; }
+}

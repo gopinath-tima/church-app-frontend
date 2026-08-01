@@ -1,0 +1,427 @@
+.premium-admin-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 0;
+  max-width: 1000px;
+  margin: 30px auto;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+  overflow: hidden;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.premium-card-header {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  padding: 24px 32px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.premium-card-icon {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  color: #2563eb;
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.1);
+}
+
+.premium-card-header-text h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 4px 0;
+}
+
+.premium-card-header-text p {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.premium-card-body {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 32px;
+  padding: 32px;
+}
+
+@media (max-width: 850px) {
+  .premium-card-body {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.form-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.credentials-section {
+  border-right: 1px solid #f1f5f9;
+  padding-right: 16px;
+}
+
+@media (max-width: 850px) {
+  .credentials-section {
+    border-right: none;
+    padding-right: 0;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 24px;
+  }
+}
+
+.section-subtitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #334155;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.premium-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.premium-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.premium-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.premium-input-wrapper .input-icon {
+  position: absolute;
+  left: 14px;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.premium-input {
+  width: 100%;
+  padding: 12px 14px 12px 44px;
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  color: #0f172a;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: border-box;
+}
+
+.premium-input:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #94a3b8;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.password-toggle-btn:hover {
+  color: #475569;
+}
+
+.helper-info-box {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 10px;
+}
+
+.helper-info-box h5 {
+  margin: 0 0 8px 0;
+  color: #166534;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.helper-info-box ul {
+  margin: 0;
+  padding-left: 18px;
+  color: #1e293b;
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Administrative Roles Grid */
+.admin-roles-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-role-card {
+  display: block;
+  cursor: pointer;
+  position: relative;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.admin-role-card:hover {
+  border-color: #cbd5e1;
+  background: #f1f5f9;
+}
+
+.admin-role-card.selected {
+  border-color: #2563eb;
+  background: #f0f6ff;
+  box-shadow: 0 4px 12px -2px rgba(37, 99, 235, 0.08);
+}
+
+.admin-role-card-content {
+  padding: 14px 18px;
+}
+
+.role-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.role-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.admin-role-card.selected .role-title {
+  color: #1d4ed8;
+}
+
+.checkbox-indicator {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #cbd5e1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  background: #ffffff;
+}
+
+.admin-role-card:hover .checkbox-indicator {
+  border-color: #94a3b8;
+}
+
+.admin-role-card.selected .checkbox-indicator {
+  border-color: #2563eb;
+  background: #2563eb;
+}
+
+.admin-role-card.selected .checkbox-indicator::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: #ffffff;
+  border-radius: 50%;
+}
+
+.role-desc {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.admin-role-card.selected .role-desc {
+  color: #475569;
+}
+
+/* Modules Selection Grid */
+.modules-grid-selection {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+@media (max-width: 480px) {
+  .modules-grid-selection {
+    grid-template-columns: 1fr;
+  }
+}
+
+.module-selection-card {
+  display: block;
+  cursor: pointer;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px 14px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+}
+
+.module-selection-card:hover:not(.disabled) {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+  transform: translateY(-1px);
+}
+
+.module-selection-card.selected:not(.disabled) {
+  border-color: #2563eb;
+  background: #f0f6ff;
+  box-shadow: 0 4px 10px -2px rgba(37, 99, 235, 0.05);
+}
+
+.module-card-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.module-emoji {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.module-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.module-selection-card.selected .module-name {
+  color: #1d4ed8;
+}
+
+/* Hidden native inputs */
+.hidden-checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Disabled modules override states */
+.disabled-badge {
+  font-size: 0.7rem;
+  background: #fee2e2;
+  color: #dc2626;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.module-selection-card.disabled {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.module-selection-card.disabled .module-name {
+  color: #94a3b8;
+}
+
+/* Footer & Action Buttons */
+.premium-card-footer {
+  background: #f8fafc;
+  padding: 20px 32px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.premium-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.premium-submit-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+}
+
+.premium-submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.premium-submit-btn:disabled {
+  background: #e2e8f0;
+  color: #94a3b8;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Access Denied Card */
+.access-denied-container {
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 40px;
+  background: #ffffff;
+  border: 1px solid #fca5a5;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.access-denied-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.access-denied-container h3 {
+  color: #b91c1c;
+  font-size: 1.5rem;
+  margin: 0 0 8px 0;
+}
+
+.access-denied-container p {
+  color: #4b5563;
+  margin: 0;
+  font-size: 0.95rem;
+}

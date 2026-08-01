@@ -1,0 +1,357 @@
+/* =========================================
+   BRANCH MANAGEMENT CSS
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+.branch-container {
+    padding: 24px 32px;
+    background-color: #f4f6fb;
+    min-height: 100vh;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1e293b;
+}
+
+/* ── HEADER ── */
+.branch-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.branch-header-left h1 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 4px;
+}
+
+.branch-header-left p {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin: 0;
+}
+
+.branch-header-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    font-family: inherit;
+}
+
+.btn-primary {
+    background: #1e3a5f;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(30,58,95,0.15);
+}
+
+.btn-primary:hover {
+    background: #16304f;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(30,58,95,0.25);
+}
+
+/* ── TABLE CARD ── */
+.branch-table-card {
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+
+.branch-table-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid #f1f5f9;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.branch-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 10px 14px;
+    width: 100%;
+    max-width: 380px;
+    transition: all 0.2s ease;
+}
+
+.branch-search:focus-within {
+    border-color: #3b82f6;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.branch-search svg { color: #94a3b8; flex-shrink: 0; }
+.branch-search input {
+    border: none;
+    background: transparent;
+    font-size: 0.9rem;
+    color: #1e293b;
+    width: 100%;
+    outline: none;
+    font-family: inherit;
+}
+
+.branch-search input::placeholder { color: #94a3b8; }
+
+/* ── TABLE ── */
+.branch-table-wrap {
+    overflow-x: auto;
+}
+
+.branch-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.branch-table th {
+    background: #f8fafc;
+    padding: 14px 24px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.branch-table td {
+    padding: 16px 24px;
+    font-size: 0.9rem;
+    color: #334155;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: middle;
+}
+
+.branch-table tr:hover { background: #f8fafc; }
+.branch-table tr:last-child td { border-bottom: none; }
+
+.branch-name {
+    font-weight: 600;
+    color: #0f172a;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.branch-icon {
+    width: 36px;
+    height: 36px;
+    background: #e0e7ff;
+    color: #4f46e5;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+}
+
+.status-active { background: #dcfce7; color: #16a34a; }
+.status-inactive { background: #fee2e2; color: #dc2626; }
+
+.action-btn {
+    background: none;
+    border: none;
+    color: #64748b;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-btn:hover {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+
+/* ── MODAL ── */
+.branch-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15,23,42,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: overlayIn 0.2s ease;
+}
+
+@keyframes overlayIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.branch-modal {
+    background: #fff;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 550px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+    animation: modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+@keyframes modalIn {
+    from { opacity: 0; transform: scale(0.95) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.branch-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.branch-modal-header h2 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+}
+
+.branch-modal-close {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.branch-modal-close:hover {
+    color: #1e293b;
+    background: #f1f5f9;
+}
+
+.branch-modal-body {
+    padding: 24px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #475569;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    color: #1e293b;
+    font-family: inherit;
+    background: #f8fafc;
+    transition: all 0.2s;
+    box-sizing: border-box;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 40px;
+}
+
+.branch-modal-footer {
+    padding: 20px 24px;
+    background: #f8fafc;
+    border-top: 1px solid #f1f5f9;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.btn-secondary {
+    background: #fff;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+}
+
+.btn-secondary:hover {
+    background: #f1f5f9;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 992px) {
+    .branch-container { padding: 20px; }
+}
+
+@media (max-width: 768px) {
+    .branch-container { padding: 0 !important; background: transparent !important; min-height: auto; }
+    .branch-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .branch-header-actions { width: 100%; justify-content: space-between; }
+    .branch-table-top { flex-direction: column; align-items: stretch; }
+    .branch-search { max-width: 100%; }
+    
+    .branch-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .branch-table { min-width: 700px; }
+    
+    .branch-modal { width: calc(100vw - 24px) !important; margin: 12px; }
+    .form-row { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,186 @@
+.report-dashboard {
+  padding: 10px;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.report-header {
+  margin-bottom: 24px;
+}
+
+.report-header h1 {
+  font-size: 2rem;
+  color: #111827;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.report-header p {
+  color: #6b7280;
+  font-size: 1.05rem;
+}
+
+.report-layout {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 24px;
+}
+
+.report-panel {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #f3f4f6;
+  padding-bottom: 12px;
+}
+
+.event-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  max-height: 600px;
+}
+
+.event-item {
+  padding: 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.event-item:hover {
+  border-color: #3b82f6;
+  background: #f8fafc;
+}
+
+.event-item.active {
+  background: #eff6ff;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px #3b82f6;
+}
+
+.event-title {
+  font-weight: 600;
+  color: #111827;
+  font-size: 1.05rem;
+  margin-bottom: 4px;
+}
+
+.event-date {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.attendance-stats-banner {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.stats-label {
+  font-size: 1.1rem;
+  color: #166534;
+  font-weight: 600;
+}
+
+.stats-count {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #15803d;
+}
+
+.report-roster {
+  flex: 1;
+}
+
+.report-roster-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.report-roster-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.report-roster-item:last-child {
+  border-bottom: none;
+}
+
+.report-roster-name {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.report-roster-id {
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+.report-roster-time {
+  background: #f3f4f6;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.empty-state {
+  color: #9ca3af;
+  font-style: italic;
+  font-size: 0.95rem;
+  text-align: center;
+  padding: 40px 0;
+}
+
+/* ==============================
+   RESPONSIVE — Attendance Reports
+============================== */
+@media (max-width: 992px) {
+  .report-layout {
+    grid-template-columns: 1fr;
+  }
+  .report-header h1 { font-size: 1.6rem; }
+}
+
+@media (max-width: 768px) {
+  .report-dashboard { padding: 6px; }
+  .report-header { margin-bottom: 16px; }
+  .report-header h1 { font-size: 1.35rem; margin-bottom: 4px; }
+  .report-header p { font-size: 0.875rem; }
+  .report-layout { gap: 14px; }
+  .report-panel { padding: 16px; }
+  .panel-title { font-size: 1.05rem; }
+  .attendance-stats-banner {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+    padding: 14px;
+  }
+  .stats-count { font-size: 2rem; }
+  .event-list { max-height: 300px; }
+  .report-roster-item { flex-wrap: wrap; gap: 6px; }
+}

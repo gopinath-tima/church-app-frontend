@@ -1,0 +1,42 @@
+.branch-selector-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.branch-selector-label {
+    font-size: 0.85rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+}
+
+.branch-selector-dropdown {
+    padding: 10px 16px;
+    background-color: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    color: #0f172a;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease;
+    min-width: 200px;
+}
+
+.branch-selector-dropdown:hover {
+    border-color: #cbd5e1;
+    background-color: #e2e8f0;
+}
+
+.branch-selector-dropdown:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.branch-selector-dropdown option {
+    background-color: #ffffff;
+    color: #0f172a;
+}

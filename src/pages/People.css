@@ -1,0 +1,358 @@
+.people-container {
+    padding: 20px;
+    background-color: #ffffff;
+    min-height: 100vh;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.people-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    gap: 16px;
+}
+
+.search-box {
+    position: relative;
+    flex: 1;
+    max-width: 600px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 12px 12px 44px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background-color: #f8fafc;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    color: #1e293b;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.filter-box {
+    display: flex;
+    align-items: center;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 8px 12px;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-box:hover {
+    background-color: #f1f5f9;
+    border-color: #cbd5e1;
+}
+
+.filter-icon {
+    color: #64748b;
+}
+
+.filter-box select {
+    background: none;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #1e293b;
+    cursor: pointer;
+    outline: none;
+}
+
+/* Table Styling */
+.people-table-wrapper {
+    background-color: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.people-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.people-table th {
+    background-color: #ffffff;
+    padding: 16px 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #64748b;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.people-table td {
+    padding: 16px 20px;
+    font-size: 0.95rem;
+    color: #334155;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: middle;
+}
+
+.people-table tr:last-child td {
+    border-bottom: none;
+}
+
+.people-table tr {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.people-table tr:hover td {
+    background-color: #f1f5f9;
+}
+
+/* Cell Specifics */
+.name-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    overflow: hidden; /* Ensure image doesn't overflow the circle */
+}
+
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.member-name {
+    font-weight: 600;
+    color: #0f172a;
+}
+
+/* Badges */
+.role-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    background-color: #f1f5f9;
+    color: #475569;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.status-badge.active {
+    background-color: #2563eb;
+    color: #ffffff;
+}
+
+.status-badge.inactive {
+    background-color: #ef4444;
+    color: #ffffff;
+}
+
+.status-badge.transferred {
+    background-color: #94a3b8;
+    color: #ffffff;
+}
+
+/* Loading & Empty States */
+.people-loading, .no-results {
+    padding: 40px;
+    text-align: center;
+    color: #64748b;
+    font-size: 1rem;
+}
+
+.people-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .people-table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-only {
+        display: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .desktop-only {
+        display: none !important;
+    }
+
+    .people-container {
+        padding: 12px;
+    }
+
+    /* Mobile Cards Styling */
+    .people-mobile-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .mobile-member-card {
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .mobile-member-card:active {
+        transform: scale(0.98);
+    }
+
+    .mobile-card-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 16px;
+        background: linear-gradient(to right, #f8fafc, #ffffff);
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    .mobile-card-title {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mobile-card-title h3 {
+        margin: 0;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #0f172a;
+    }
+
+    .mobile-member-id {
+        font-size: 0.8rem;
+        color: #64748b;
+        margin-top: 4px;
+        font-weight: 500;
+    }
+
+    .mobile-card-body {
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .mobile-card-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.95rem;
+    }
+
+    .mobile-label {
+        color: #64748b;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+    }
+
+    .mobile-value {
+        color: #334155;
+        font-weight: 500;
+        text-align: right;
+    }
+
+    .mobile-card-actions {
+        display: flex;
+        gap: 8px;
+        padding: 12px 16px;
+        background-color: #f8fafc;
+        border-top: 1px solid #f1f5f9;
+        justify-content: flex-end;
+    }
+
+    .mobile-card-actions button {
+        padding: 6px 14px;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    .mobile-btn-view {
+        background-color: transparent;
+        color: #64748b;
+        border: 1px solid #cbd5e1;
+    }
+
+    .mobile-btn-edit {
+        background-color: transparent;
+        color: #3b82f6;
+        border: 1px solid #93c5fd;
+    }
+
+    .mobile-btn-delete {
+        background-color: transparent;
+        color: #ef4444;
+        border: 1px solid #fca5a5;
+    }
+}
+
+@media (max-width: 640px) {
+    .people-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+    
+    .search-box {
+        max-width: none;
+    }
+}
