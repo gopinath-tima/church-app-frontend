@@ -21,7 +21,7 @@ const Assets = () => {
     const [showHistoryModal, setShowHistoryModal] = useState(false);
     const [assetHistory, setAssetHistory] = useState([]);
     const [historyLoading, setHistoryLoading] = useState(false);
-    const [selectedHistoryAsset, setSelectedHistoryAsset] = useState(null);
+    const [, setSelectedHistoryAsset] = useState(null);
 
     const initialFormState = {
         name: '',

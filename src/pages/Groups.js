@@ -152,6 +152,7 @@ const Groups = () => {
         } catch (err) {
             console.error("Error fetching groups:", err);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // Retrieve group member connections list

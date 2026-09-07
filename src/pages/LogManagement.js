@@ -30,6 +30,7 @@ function LogManagement() {
 
   useEffect(() => {
     fetchLogs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const formatTimestamp = (tsStr) => {

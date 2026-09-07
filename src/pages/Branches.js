@@ -31,6 +31,7 @@ const Branches = () => {
 
     useEffect(() => {
         fetchBranches();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const getAuthHeaders = () => {

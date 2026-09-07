@@ -84,6 +84,7 @@ function SuperPlusAdmin() {
     } else if (activeTab === 'settings') {
       fetchSettings();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab]);
 
   const handleDeleteUser = async (userId, username) => {

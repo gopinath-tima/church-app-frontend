@@ -52,6 +52,7 @@ function Events() {
   useEffect(() => { 
     fetchEvents(); 
     fetchTeachers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchEvents = async () => {
@@ -128,7 +129,6 @@ function Events() {
     const { date, hour, minute, ampm } = parseDateTime(dateString);
     const isStart = fieldName === 'startDate';
     const borderCol = isStart ? '#bbf7d0' : '#fed7aa';
-    const focusCol  = isStart ? '#10b981' : '#f59e0b';
     const iconCol   = isStart ? '#16a34a' : '#ea580c';
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
