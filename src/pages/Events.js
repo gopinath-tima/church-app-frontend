@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -49,12 +49,7 @@ function Events() {
     return token ? { Authorization: `Bearer ${token}` } : null;
   };
 
-  useEffect(() => { 
-    fetchEvents(); 
-    fetchTeachers();
-  }, []);
-
-  const fetchEvents = async () => {
+  const fetchEvents = useCallback(async () => {
     const headers = getAuthHeaders();
     if (!headers) { alert("Please log in to load events."); return; }
     try {
@@ -64,9 +59,9 @@ function Events() {
       if (err.response?.status === 401 || err.response?.status === 403) alert("Unauthorized. Please log in again.");
       else console.error("Error fetching events:", err);
     }
-  };
+  }, []);
 
-  const fetchTeachers = async () => {
+  const fetchTeachers = useCallback(async () => {
     const headers = getAuthHeaders();
     if (!headers) return;
     try {
@@ -75,7 +70,12 @@ function Events() {
     } catch (err) {
       console.error("Error fetching Sunday School teachers:", err);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchEvents();
+    fetchTeachers();
+  }, [fetchEvents, fetchTeachers]);
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -128,7 +128,6 @@ function Events() {
     const { date, hour, minute, ampm } = parseDateTime(dateString);
     const isStart = fieldName === 'startDate';
     const borderCol = isStart ? '#bbf7d0' : '#fed7aa';
-    const focusCol  = isStart ? '#10b981' : '#f59e0b';
     const iconCol   = isStart ? '#16a34a' : '#ea580c';
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>

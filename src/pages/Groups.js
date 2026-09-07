@@ -137,25 +137,8 @@ const Groups = () => {
         return token ? { Authorization: `Bearer ${token}` } : {};
     };
 
-    // Retrieve all groups from REST API
-    const fetchGroups = useCallback(async () => {
-        try {
-            const res = await axios.get('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/groups', {
-                headers: getAuthHeaders()
-            });
-            setGroups(res.data || []);
-            
-            // For each group, pre-fetch its connected members to calculate totals
-            (res.data || []).forEach(g => {
-                fetchGroupMembers(g.groupId);
-            });
-        } catch (err) {
-            console.error("Error fetching groups:", err);
-        }
-    }, []);
-
     // Retrieve group member connections list
-    const fetchGroupMembers = async (groupId) => {
+    const fetchGroupMembers = useCallback(async (groupId) => {
         try {
             const res = await axios.get(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/groups/${groupId}/members`, {
                 headers: getAuthHeaders()
@@ -167,7 +150,24 @@ const Groups = () => {
         } catch (err) {
             console.error(`Error fetching members for group ${groupId}:`, err);
         }
-    };
+    }, []);
+
+    // Retrieve all groups from REST API
+    const fetchGroups = useCallback(async () => {
+        try {
+            const res = await axios.get('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/groups', {
+                headers: getAuthHeaders()
+            });
+            setGroups(res.data || []);
+
+            // For each group, pre-fetch its connected members to calculate totals
+            (res.data || []).forEach(g => {
+                fetchGroupMembers(g.groupId);
+            });
+        } catch (err) {
+            console.error("Error fetching groups:", err);
+        }
+    }, [fetchGroupMembers]);
 
     useEffect(() => {
         fetchGroups();

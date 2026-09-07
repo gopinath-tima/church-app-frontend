@@ -6,7 +6,6 @@ import "./App.css";
 // Components
 import Login from "./components/Login";
 import Sidebar from "./components/Sidebar";
-import BranchSelector from "./components/BranchSelector";
 
 import Home from "./pages/Home";
 import Landing from "./pages/Landing";

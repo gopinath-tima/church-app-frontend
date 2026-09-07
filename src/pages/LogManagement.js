@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import './LogManagement.css';
 
@@ -11,7 +11,7 @@ function LogManagement() {
   const [selectedMethod, setSelectedMethod] = useState("ALL");
   const [expandedLogId, setExpandedLogId] = useState(null);
 
-  const fetchLogs = async () => {
+  const fetchLogs = useCallback(async () => {
     if (!token) return;
     setLoading(true);
     setError(null);
@@ -26,11 +26,11 @@ function LogManagement() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [token]);
 
   useEffect(() => {
     fetchLogs();
-  }, []);
+  }, [fetchLogs]);
 
   const formatTimestamp = (tsStr) => {
     if (!tsStr) return "";

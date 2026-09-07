@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import CreateUser from '../components/CreateUser';
@@ -41,7 +41,7 @@ function SuperPlusAdmin() {
   const [editPassword, setEditPassword] = useState("");
   const [editRoles, setEditRoles] = useState([]);
 
-  const fetchUsers = async () => {
+  const fetchUsers = useCallback(async () => {
     if (!token) return;
     setLoading(true);
     setError(null);
@@ -56,9 +56,9 @@ function SuperPlusAdmin() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [token]);
 
-  const fetchSettings = async () => {
+  const fetchSettings = useCallback(async () => {
     if (!token) return;
     setLoading(true);
     try {
@@ -76,7 +76,7 @@ function SuperPlusAdmin() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [token]);
 
   useEffect(() => {
     if (activeTab === 'users') {
@@ -84,7 +84,7 @@ function SuperPlusAdmin() {
     } else if (activeTab === 'settings') {
       fetchSettings();
     }
-  }, [activeTab]);
+  }, [activeTab, fetchUsers, fetchSettings]);
 
   const handleDeleteUser = async (userId, username) => {
     if (username === currentUser?.sub) {

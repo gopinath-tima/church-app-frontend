@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
 function Admin() {
   const navigate = useNavigate();
-  const [stats, setStats] = useState({ totalMembers: 0, activeMinistries: 0 });
+  const [stats] = useState({ totalMembers: 0, activeMinistries: 0 });
 
   // Example of fetching dashboard data (you can wire this up to Java later!)
   useEffect(() => {

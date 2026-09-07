@@ -28,6 +28,7 @@ const AuthenticatedAvatar = ({ memberId, firstName, lastName, photoUrl, style = 
         };
         fetchImage();
         return () => { if (imageSrc) URL.revokeObjectURL(imageSrc); };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [memberId, photoUrl]);
 
     if (error || (!photoUrl && !imageSrc)) {
@@ -74,6 +75,7 @@ const AddMember = () => {
 
     useEffect(() => {
         if (isEditMode) loadMemberForEdit();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [editId]);
 
     const loadMemberForEdit = async () => {
