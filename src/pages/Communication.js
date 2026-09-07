@@ -61,7 +61,7 @@ function Communication() {
     try {
       const config = getAuthHeaders();
       
-      const fetchMembers = axios.get('http://localhost:8081/api/members', config)
+      const fetchMembers = axios.get('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members', config)
         .then(res => {
           const mData = res.data.content ? res.data.content : res.data;
           setMembers(Array.isArray(mData) ? mData : []);
@@ -73,15 +73,15 @@ function Communication() {
           }
         });
 
-      const fetchGroups = axios.get('http://localhost:8081/api/groups', config)
+      const fetchGroups = axios.get('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/groups', config)
         .then(res => setGroups(Array.isArray(res.data) ? res.data : []))
         .catch(err => console.error("Failed to load groups:", err));
 
-      const fetchAnnouncements = axios.get('http://localhost:8081/api/announcements', config)
+      const fetchAnnouncements = axios.get('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/announcements', config)
         .then(res => setAnnouncements(Array.isArray(res.data) ? res.data : []))
         .catch(err => console.error("Failed to load announcements:", err));
 
-      const fetchLogs = axios.get('http://localhost:8081/api/communication/logs', config)
+      const fetchLogs = axios.get('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/communication/logs', config)
         .then(res => setLogs(Array.isArray(res.data) ? res.data : []))
         .catch(err => console.error("Failed to load logs:", err));
 
@@ -121,10 +121,10 @@ function Communication() {
       };
 
       if (editingAnn) {
-        const res = await axios.put(`http://localhost:8081/api/announcements/${editingAnn.id}`, payload, config);
+        const res = await axios.put(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/announcements/${editingAnn.id}`, payload, config);
         setAnnouncements(announcements.map(a => a.id === editingAnn.id ? res.data : a));
       } else {
-        const res = await axios.post('http://localhost:8081/api/announcements', payload, config);
+        const res = await axios.post('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/announcements', payload, config);
         setAnnouncements([res.data, ...announcements]);
       }
       setIsAnnModalOpen(false);
@@ -136,7 +136,7 @@ function Communication() {
   const handleDeleteAnnouncement = async (id) => {
     if (!window.confirm("Are you sure you want to delete this announcement?")) return;
     try {
-      await axios.delete(`http://localhost:8081/api/announcements/${id}`, getAuthHeaders());
+      await axios.delete(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/announcements/${id}`, getAuthHeaders());
       setAnnouncements(announcements.filter(a => a.id !== id));
     } catch (err) {
       alert("Error deleting announcement");
@@ -179,7 +179,7 @@ function Communication() {
       // Note: Group Members must be loaded or we fetch from group members endpoint
       try {
         setIsLoading(true);
-        const res = await axios.get(`http://localhost:8081/api/groups/${selectedGroupId}/members`, getAuthHeaders());
+        const res = await axios.get(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/groups/${selectedGroupId}/members`, getAuthHeaders());
         targetIds = res.data.map(gm => gm.memberId);
       } catch (err) {
         alert("Failed to retrieve group members.");
@@ -212,7 +212,7 @@ function Communication() {
         message: broadcastMessage
       };
 
-      await axios.post('http://localhost:8081/api/communication/send', payload, config);
+      await axios.post('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/communication/send', payload, config);
       
       setBcSuccessMsg(`Broadcast successfully sent to ${targetIds.length} members!`);
       setBroadcastSubject('');
@@ -220,7 +220,7 @@ function Communication() {
       setSelectedMemberIds([]);
       
       // Reload logs
-      const resLogs = await axios.get('http://localhost:8081/api/communication/logs', config);
+      const resLogs = await axios.get('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/communication/logs', config);
       setLogs(resLogs.data);
     } catch (err) {
       alert("Failed to send broadcast.");

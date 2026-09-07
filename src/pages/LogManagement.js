@@ -16,7 +16,7 @@ function LogManagement() {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get("http://localhost:8081/api/logs", {
+      const response = await axios.get("https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/logs", {
         headers: { Authorization: `Bearer ${token}` }
       });
       setLogs(response.data);

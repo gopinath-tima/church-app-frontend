@@ -46,7 +46,7 @@ function SuperPlusAdmin() {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get("http://localhost:8081/api/users", {
+      const response = await axios.get("https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/users", {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUsers(response.data);
@@ -62,7 +62,7 @@ function SuperPlusAdmin() {
     if (!token) return;
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:8081/api/settings", {
+      const response = await axios.get("https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/settings", {
         headers: { Authorization: `Bearer ${token}` }
       });
       setDbSettings(response.data);
@@ -96,7 +96,7 @@ function SuperPlusAdmin() {
     }
 
     try {
-      await axios.delete(`http://localhost:8081/api/users/${userId}`, {
+      await axios.delete(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/users/${userId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       alert("User deleted successfully!");
@@ -136,7 +136,7 @@ function SuperPlusAdmin() {
       return;
     }
     try {
-      await axios.put(`http://localhost:8081/api/users/${editingUser.id}`, {
+      await axios.put(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/users/${editingUser.id}`, {
         username: editUsername,
         password: editPassword || null,
         roles: editRoles
@@ -160,7 +160,7 @@ function SuperPlusAdmin() {
 
   const handleSaveSettings = async () => {
     try {
-      await axios.post("http://localhost:8081/api/settings/update", localSettings, {
+      await axios.post("https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/settings/update", localSettings, {
         headers: { Authorization: `Bearer ${token}` }
       });
       alert("System Settings saved successfully!");

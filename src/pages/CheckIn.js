@@ -15,7 +15,7 @@ const CheckIn = () => {
     const fetchEvents = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:8081/api/events", {
+        const response = await axios.get("https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/events", {
           headers: { Authorization: `Bearer ${token}` }
         });
         // Filter events so only today's events are shown in the dropdown
@@ -42,7 +42,7 @@ const CheckIn = () => {
     const fetchRoster = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get(`http://localhost:8081/api/attendance/event/${selectedEventId}`, {
+        const response = await axios.get(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/attendance/event/${selectedEventId}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setRoster(response.data);
@@ -60,7 +60,7 @@ const CheckIn = () => {
         setIsSearching(true);
         try {
           const token = localStorage.getItem("token");
-          const response = await axios.get(`http://localhost:8081/api/attendance/search?query=${searchQuery}`, {
+          const response = await axios.get(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/attendance/search?query=${searchQuery}`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           setSearchResults(response.data);
@@ -84,7 +84,7 @@ const CheckIn = () => {
     }
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.post(`http://localhost:8081/api/attendance/checkin?memberId=${memberId}&eventId=${selectedEventId}`, {}, {
+      const response = await axios.post(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/attendance/checkin?memberId=${memberId}&eventId=${selectedEventId}`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       // Add to top of roster

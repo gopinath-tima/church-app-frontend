@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import "./SundaySchool.css";
 
-const API_BASE = "http://localhost:8081/api/sunday-school";
+const API_BASE = "https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/sunday-school";
 
 export default function SundaySchool() {
   const [activeTab, setActiveTab] = useState("dashboard");

@@ -15,7 +15,7 @@ function Admin() {
         return;
       }
       // Placeholder for future backend calls
-      // const response = await axios.get("http://localhost:8081/api/admin/stats", { headers: { Authorization: `Bearer ${token}` } });
+      // const response = await axios.get("https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/admin/stats", { headers: { Authorization: `Bearer ${token}` } });
       // setStats(response.data);
     };
     fetchDashboardData();

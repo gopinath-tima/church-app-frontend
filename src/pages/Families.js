@@ -42,7 +42,7 @@ const Families = () => {
         try {
             setLoading(true);
             const headers = getAuthHeaders();
-            const res = await axios.get('http://localhost:8081/api/families', { headers: headers || {} });
+            const res = await axios.get('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/families', { headers: headers || {} });
             setHouseholds(res.data || []);
         } catch (err) {
             console.error("Error fetching families:", err);
@@ -97,12 +97,12 @@ const Families = () => {
                 address: newFamilyData.address,
                 headMemberId: newFamilyData.headMember ? newFamilyData.headMember.memberId : null
             };
-            const createRes = await axios.post('http://localhost:8081/api/families', payload, { headers: headers || {} });
+            const createRes = await axios.post('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/families', payload, { headers: headers || {} });
             const newFamilyId = createRes.data.familyId;
 
             // 2. Add all additional members
             for (const member of newFamilyData.additionalMembers) {
-                await axios.post(`http://localhost:8081/api/families/${newFamilyId}/members/${member.memberId}`, {}, { headers: headers || {} });
+                await axios.post(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/families/${newFamilyId}/members/${member.memberId}`, {}, { headers: headers || {} });
             }
 
             setShowCreateModal(false);
@@ -156,7 +156,7 @@ const Families = () => {
         e.preventDefault();
         try {
             const headers = getAuthHeaders();
-            await axios.put(`http://localhost:8081/api/families/${selectedFamily.familyId}`, editFormData, { headers: headers || {} });
+            await axios.put(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/families/${selectedFamily.familyId}`, editFormData, { headers: headers || {} });
             setShowEditModal(false);
             setSelectedFamily(null);
             fetchFamilies();
@@ -170,7 +170,7 @@ const Families = () => {
         if (!window.confirm("Are you sure you want to delete this household? The members will not be deleted, just unlinked.")) return;
         try {
             const headers = getAuthHeaders();
-            await axios.delete(`http://localhost:8081/api/families/${id}`, { headers: headers || {} });
+            await axios.delete(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/families/${id}`, { headers: headers || {} });
             fetchFamilies();
         } catch (err) {
             console.error("Error deleting family:", err);
@@ -185,7 +185,7 @@ const Families = () => {
         if (!window.confirm("Remove this member from the household?")) return;
         try {
             const headers = getAuthHeaders();
-            await axios.delete(`http://localhost:8081/api/families/${familyId}/members/${memberId}`, { headers: headers || {} });
+            await axios.delete(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/families/${familyId}/members/${memberId}`, { headers: headers || {} });
             fetchFamilies();
         } catch (err) {
             console.error("Error removing member:", err);
@@ -196,7 +196,7 @@ const Families = () => {
     const handleAddMember = async (familyId, memberId) => {
         try {
             const headers = getAuthHeaders();
-            await axios.post(`http://localhost:8081/api/families/${familyId}/members/${memberId}`, {}, { headers: headers || {} });
+            await axios.post(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/families/${familyId}/members/${memberId}`, {}, { headers: headers || {} });
             setEditSearchTerm('');
             setEditSearchResults([]);
             fetchFamilies();
@@ -217,7 +217,7 @@ const Families = () => {
         loaderCallback(true);
         try {
             const headers = getAuthHeaders();
-            const res = await axios.get(`http://localhost:8081/api/members/search?type=all&value=${term}`, { headers: headers || {} });
+            const res = await axios.get(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members/search?type=all&value=${term}`, { headers: headers || {} });
             setterCallback(Array.isArray(res.data) ? res.data : []);
         } catch (err) {
             console.error("Error searching members:", err);

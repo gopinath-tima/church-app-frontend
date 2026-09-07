@@ -20,8 +20,8 @@ const AuthenticatedAvatar = ({ memberId, firstName, lastName, photoUrl, photoCon
                     localStorage.getItem("accessToken");
                 
                 const url = photoUrl 
-                    ? `http://localhost:8081${photoUrl}` 
-                    : `http://localhost:8081/api/members/${memberId}/photo`;
+                    ? `https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net${photoUrl}` 
+                    : `https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members/${memberId}/photo`;
 
                 const response = await axios.get(url, {
                     headers: token ? { Authorization: `Bearer ${token}` } : {},
@@ -140,7 +140,7 @@ const Groups = () => {
     // Retrieve all groups from REST API
     const fetchGroups = useCallback(async () => {
         try {
-            const res = await axios.get('http://localhost:8081/api/groups', {
+            const res = await axios.get('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/groups', {
                 headers: getAuthHeaders()
             });
             setGroups(res.data || []);
@@ -157,7 +157,7 @@ const Groups = () => {
     // Retrieve group member connections list
     const fetchGroupMembers = async (groupId) => {
         try {
-            const res = await axios.get(`http://localhost:8081/api/groups/${groupId}/members`, {
+            const res = await axios.get(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/groups/${groupId}/members`, {
                 headers: getAuthHeaders()
             });
             setGroupMembersCache(prev => ({
@@ -214,9 +214,9 @@ const Groups = () => {
         const headers = getAuthHeaders();
         try {
             if (isEditing) {
-                await axios.put(`http://localhost:8081/api/groups/${currentGroupId}`, formData, { headers });
+                await axios.put(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/groups/${currentGroupId}`, formData, { headers });
             } else {
-                await axios.post('http://localhost:8081/api/groups', formData, { headers });
+                await axios.post('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/groups', formData, { headers });
             }
             setShowFormModal(false);
             fetchGroups();
@@ -231,7 +231,7 @@ const Groups = () => {
         e.stopPropagation();
         if (!window.confirm("Are you sure you want to delete this group? All member connections will be removed permanently.")) return;
         try {
-            await axios.delete(`http://localhost:8081/api/groups/${groupId}`, {
+            await axios.delete(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/groups/${groupId}`, {
                 headers: getAuthHeaders()
             });
             fetchGroups();
@@ -264,7 +264,7 @@ const Groups = () => {
         }
         setIsSearchingMember(true);
         try {
-            const res = await axios.get(`http://localhost:8081/api/members/search?type=all&value=${term}`, {
+            const res = await axios.get(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members/search?type=all&value=${term}`, {
                 headers: getAuthHeaders()
             });
             setMemberSearchResults(Array.isArray(res.data) ? res.data : []);
@@ -294,7 +294,7 @@ const Groups = () => {
         };
 
         try {
-            await axios.post(`http://localhost:8081/api/groups/${selectedGroup.groupId}/members`, payload, {
+            await axios.post(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/groups/${selectedGroup.groupId}/members`, payload, {
                 headers: getAuthHeaders()
             });
             
@@ -316,7 +316,7 @@ const Groups = () => {
     const handleRemoveMemberConnection = async (memberId) => {
         if (!window.confirm("Are you sure you want to remove this member connection from the group?")) return;
         try {
-            await axios.delete(`http://localhost:8081/api/groups/${selectedGroup.groupId}/members/${memberId}`, {
+            await axios.delete(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/groups/${selectedGroup.groupId}/members/${memberId}`, {
                 headers: getAuthHeaders()
             });
             fetchGroupMembers(selectedGroup.groupId);

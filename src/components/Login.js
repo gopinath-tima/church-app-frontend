@@ -12,7 +12,7 @@ function Login() {
   const handleLogin = async (e) => {
     if (e) e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8081/api/login", {
+      const response = await fetch("https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password })

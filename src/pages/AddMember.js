@@ -14,7 +14,7 @@ const AuthenticatedAvatar = ({ memberId, firstName, lastName, photoUrl, style = 
         const fetchImage = async () => {
             try {
                 const token = localStorage.getItem('token') || localStorage.getItem('jwt') || localStorage.getItem('jwtToken') || localStorage.getItem('authToken') || localStorage.getItem('accessToken');
-                const url = photoUrl ? `http://localhost:8081${photoUrl}` : `http://localhost:8081/api/members/${memberId}/photo`;
+                const url = photoUrl ? `https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net${photoUrl}` : `https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members/${memberId}/photo`;
                 const response = await axios.get(url, {
                     headers: token ? { Authorization: `Bearer ${token}` } : {},
                     responseType: 'blob'
@@ -79,7 +79,7 @@ const AddMember = () => {
     const loadMemberForEdit = async () => {
         const headers = getAuthHeaders();
         try {
-            const res = await axios.get(`http://localhost:8081/api/members/${editId}`, { headers });
+            const res = await axios.get(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members/${editId}`, { headers });
             const data = res.data;
             setFormData({
                 ...initialFormState,
@@ -97,7 +97,7 @@ const AddMember = () => {
                     : [],
                 skills: data.skills ? (Array.isArray(data.skills) ? data.skills : data.skills.split(', ')) : []
             });
-            if (data.photoUrl) setPhotoPreviewUrl(`http://localhost:8081${data.photoUrl}`);
+            if (data.photoUrl) setPhotoPreviewUrl(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net${data.photoUrl}`);
         } catch (err) {
             console.error("Error loading member:", err);
             alert("Failed to load member data.");
@@ -167,7 +167,7 @@ const AddMember = () => {
         if (!partnerSearchValue.trim()) return alert("Please enter search text");
         const headers = getAuthHeaders();
         try {
-            const res = await axios.get(`http://localhost:8081/api/members/search?type=${partnerSearchType}&value=${partnerSearchValue}`, { headers });
+            const res = await axios.get(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members/search?type=${partnerSearchType}&value=${partnerSearchValue}`, { headers });
             const results = Array.isArray(res.data) ? res.data : (res.data ? [res.data] : []);
             setPartnerSearchResults(results.filter(m => String(m.memberId) !== String(editId)));
         } catch (err) {
@@ -235,7 +235,7 @@ const AddMember = () => {
         if (formData.profilePhoto) submissionData.append("photo", formData.profilePhoto);
 
         try {
-            const url = isEditMode ? `http://localhost:8081/api/members/update/${editId}` : `http://localhost:8081/api/members/add`;
+            const url = isEditMode ? `https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members/update/${editId}` : `https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members/add`;
             const method = isEditMode ? 'PUT' : 'POST';
 
             await axios({ method, url, data: submissionData, headers });
@@ -393,7 +393,7 @@ const AddMember = () => {
                                                 <div className="form-field">
                                                     <label>Select From Directory</label>
                                                     <div style={{ display: "flex", gap: "10px" }}>
-                                                        <input type="text" name="spouseName" value={formData.spouseName} readOnly={!formData.partnerNotMember} style={{ flex: 1, background: formData.partnerNotMember ? "white" : "#e2e8f0" }} placeholder={formData.partnerNotMember ? "Type name..." : "Database ID: " + (formData.spouseMemberId || "Unlinked")} />
+                                                        <input type="text" name="spouseName" value={formData.spouseName} onChange={handleChange} readOnly={!formData.partnerNotMember} style={{ flex: 1, background: formData.partnerNotMember ? "white" : "#e2e8f0" }} placeholder={formData.partnerNotMember ? "Type name..." : "Database ID: " + (formData.spouseMemberId || "Unlinked")} />
                                                         {!formData.partnerNotMember && (
                                                             <button type="button" onClick={() => setIsPartnerModalOpen(true)} className="btn btn-primary" style={{ padding: "0 20px" }}>Link</button>
                                                         )}

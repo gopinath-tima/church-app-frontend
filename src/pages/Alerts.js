@@ -28,7 +28,7 @@ function Alerts() {
         }
 
         try {
-            const res = await axios.get('http://localhost:8081/api/members', { headers });
+            const res = await axios.get('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members', { headers });
             const memberData = res.data.content ? res.data.content : res.data;
             setMembers(Array.isArray(memberData) ? memberData : []);
         } catch (err) {

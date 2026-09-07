@@ -31,7 +31,7 @@ const BranchSelector = () => {
                 }
 
                 // Don't send X-Branch-Id for this specific request otherwise we might get filtered
-                const res = await axios.get('http://localhost:8081/api/branches', {
+                const res = await axios.get('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/branches', {
                     headers: { 
                         Authorization: `Bearer ${token}`
                         // We intentionally do not pass X-Branch-Id here

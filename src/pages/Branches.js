@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Branches.css';
 
-const API_BASE_URL = 'http://localhost:8081/api';
+const API_BASE_URL = 'https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api';
 
 const Branches = () => {
     const [branches, setBranches] = useState([]);

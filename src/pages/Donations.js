@@ -19,8 +19,8 @@ const AuthenticatedAvatar = ({ memberId, firstName, lastName, photoUrl, photoCon
                     localStorage.getItem("accessToken");
                 
                 const url = photoUrl 
-                    ? `http://localhost:8081${photoUrl}` 
-                    : `http://localhost:8081/api/members/${memberId}/photo`;
+                    ? `https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net${photoUrl}` 
+                    : `https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members/${memberId}/photo`;
 
                 const response = await axios.get(url, {
                     headers: token ? { Authorization: `Bearer ${token}` } : {},
@@ -117,8 +117,8 @@ const Donations = () => {
         if (!headers) return;
         try {
             const [trxRes, inKindRes] = await Promise.all([
-                axios.get('http://localhost:8081/api/accounting/transactions', { headers }),
-                axios.get('http://localhost:8081/api/accounting/inkind', { headers })
+                axios.get('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/accounting/transactions', { headers }),
+                axios.get('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/accounting/inkind', { headers })
             ]);
             
             const cashDonations = (trxRes.data || []).filter(t => t.type === 'Donation');
@@ -163,7 +163,7 @@ const Donations = () => {
         setIsSearching(true);
         const headers = getAuthHeaders();
         try {
-            const res = await axios.get(`http://localhost:8081/api/members/search?type=all&value=${term}`, { headers });
+            const res = await axios.get(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members/search?type=all&value=${term}`, { headers });
             setMemberSearchResults(Array.isArray(res.data) ? res.data : []);
         } catch (err) {
             console.error("Error searching members:", err);
@@ -220,7 +220,7 @@ const Donations = () => {
         };
 
         try {
-            await axios.post('http://localhost:8081/api/accounting/transactions', payload, { headers });
+            await axios.post('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/accounting/transactions', payload, { headers });
             resetForm();
             fetchDonations();
         } catch (e) {
@@ -245,7 +245,7 @@ const Donations = () => {
         };
         if (payload.estimatedValue) payload.estimatedValue = Number(payload.estimatedValue);
         try {
-            await axios.post('http://localhost:8081/api/accounting/inkind', payload, { headers });
+            await axios.post('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/accounting/inkind', payload, { headers });
             resetForm();
             fetchDonations();
         } catch (e) { console.error(e); }

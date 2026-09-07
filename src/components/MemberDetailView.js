@@ -71,7 +71,7 @@ const MemberDetailView = ({ viewMember, onClose, onEdit, onDelete }) => {
                     <div className="sidebar-header-glow"></div>
                     <div className="member-detail-photo-wrapper">
                         {viewMember.photoUrl ? (
-                            <img src={`http://localhost:8081${viewMember.photoUrl}`} alt="Profile" className="member-detail-photo" />
+                            <img src={`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net${viewMember.photoUrl}`} alt="Profile" className="member-detail-photo" />
                         ) : (
                             <div className="no-photo-placeholder">
                                 <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">

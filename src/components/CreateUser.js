@@ -81,7 +81,7 @@ function CreateUser({ user }) {
 
     try {
       await axios.post(
-        "http://localhost:8081/api/users/create",
+        "https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/users/create",
         { username, password, roles: selectedRoles },
         { headers: { Authorization: `Bearer ${token}` } }
       );

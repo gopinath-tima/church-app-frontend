@@ -26,7 +26,7 @@ const Home = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const response = await axios.get('http://localhost:8081/api/dashboard/stats', {
+        const response = await axios.get('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/dashboard/stats', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setStats(response.data);

@@ -48,8 +48,8 @@ const AuthenticatedAvatar = ({ memberId, firstName, lastName, photoUrl, photoCon
                     localStorage.getItem("accessToken");
                 
                 const url = photoUrl 
-                    ? `http://localhost:8081${photoUrl}` 
-                    : `http://localhost:8081/api/members/${memberId}/photo`;
+                    ? `https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net${photoUrl}` 
+                    : `https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members/${memberId}/photo`;
 
                 const response = await axios.get(url, {
                     headers: token ? { Authorization: `Bearer ${token}` } : {},
@@ -254,7 +254,7 @@ const Accounting = () => {
         setSubLoading(true);
         try {
             const token = localStorage.getItem("token");
-            const res = await axios.get('http://localhost:8081/api/members', {
+            const res = await axios.get('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setAllMembers(res.data || []);
@@ -324,7 +324,7 @@ const Accounting = () => {
         setHistLoading(true);
         const headers = getAuthHeaders();
         try {
-            const trxRes = await axios.get(`http://localhost:8081/api/accounting/transactions/member/${id}`, { headers });
+            const trxRes = await axios.get(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/accounting/transactions/member/${id}`, { headers });
             setHistData({
                 transactions: Array.isArray(trxRes.data) ? trxRes.data : []
             });
@@ -342,7 +342,7 @@ const Accounting = () => {
         }
         const headers = getAuthHeaders();
         try {
-            const res = await axios.get(`http://localhost:8081/api/members/search?type=all&value=${term}`, { headers });
+            const res = await axios.get(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members/search?type=all&value=${term}`, { headers });
             setHistResults(Array.isArray(res.data) ? res.data : []);
         } catch (err) {
             console.error("Error searching members:", err);
@@ -365,7 +365,7 @@ const Accounting = () => {
         const headers = getAuthHeaders();
         try {
             // Search by name, phone or ID
-            const res = await axios.get(`http://localhost:8081/api/members/search?type=all&value=${term}`, { headers });
+            const res = await axios.get(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members/search?type=all&value=${term}`, { headers });
             setMemberSearchResults(Array.isArray(res.data) ? res.data : []);
         } catch (err) {
             console.error("Error searching members:", err);
@@ -414,10 +414,10 @@ const Accounting = () => {
         const headers = getAuthHeaders();
         if (!headers) { alert("Please log in to view accounting data."); return; }
         try {
-            const sumRes = await axios.get('http://localhost:8081/api/accounting/summary', { headers });
+            const sumRes = await axios.get('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/accounting/summary', { headers });
             setSummary(sumRes.data);
 
-            const trxRes = await axios.get('http://localhost:8081/api/accounting/transactions', { headers });
+            const trxRes = await axios.get('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/accounting/transactions', { headers });
 
             const allTransactions = (trxRes.data || []).sort((a, b) => {
                 if (!a.date || !b.date) return 0;
@@ -608,7 +608,7 @@ const Accounting = () => {
                         notes: formData.notes || null
                     };
                     console.log('Posting subscription payload:', payload);
-                    return axios.post('http://localhost:8081/api/accounting/transactions', payload, { headers });
+                    return axios.post('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/accounting/transactions', payload, { headers });
                 }));
                 setShowIncomeModal(false);
                 setFormData({});
@@ -629,7 +629,7 @@ const Accounting = () => {
         const payload = { ...formData, type: incomeType, status: 'Completed' };
         if (payload.amount) payload.amount = Number(payload.amount);
         try {
-            await axios.post('http://localhost:8081/api/accounting/transactions', payload, { headers });
+            await axios.post('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/accounting/transactions', payload, { headers });
             setShowIncomeModal(false);
             setFormData({});
             setSubCheckedMonths(new Set());
@@ -649,7 +649,7 @@ const Accounting = () => {
         const payload = { ...formData, type: 'Expense', status: 'Completed' };
         if (payload.amount) payload.amount = Number(payload.amount);
         try {
-            await axios.post('http://localhost:8081/api/accounting/transactions', payload, { headers });
+            await axios.post('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/accounting/transactions', payload, { headers });
             setShowExpenseModal(false);
             setFormData({});
             fetchData();
@@ -1465,7 +1465,7 @@ const Accounting = () => {
                                                                 const checked = e.target.checked;
                                                                 try {
                                                                     const headers = getAuthHeaders();
-                                                                    await axios.put(`http://localhost:8081/api/members/${member.memberId}/subscription-approval?approved=${checked}`, null, { headers });
+                                                                    await axios.put(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members/${member.memberId}/subscription-approval?approved=${checked}`, null, { headers });
                                                                     // Update the state locally
                                                                     setAllMembers(prev => prev.map(m => m.memberId === member.memberId ? { ...m, subscriptionApproved: checked } : m));
                                                                 } catch (err) {
@@ -1569,7 +1569,7 @@ const Accounting = () => {
                                                             const checked = e.target.checked;
                                                             try {
                                                                 const headers = getAuthHeaders();
-                                                                await axios.put(`http://localhost:8081/api/members/${member.memberId}/subscription-approval?approved=${checked}`, null, { headers });
+                                                                await axios.put(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members/${member.memberId}/subscription-approval?approved=${checked}`, null, { headers });
                                                                 setAllMembers(prev => prev.map(m => m.memberId === member.memberId ? { ...m, subscriptionApproved: checked } : m));
                                                             } catch (err) {
                                                                 console.error("Error setting subscription approval", err);
@@ -1685,7 +1685,6 @@ const Accounting = () => {
                                     { id: 'Subscription', icon: <><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></>, label: 'Subscription' },
                                     { id: 'Offering', icon: <><path d="M20 12v10H4V12" /><path d="M2 7h20v5H2z" /><line x1="12" y1="22" x2="12" y2="7" /><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" /><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" /></>, label: 'Offering' },
                                     { id: 'Sponsorship', icon: <><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></>, label: 'Sponsorship' },
-                                    { id: 'Property Rent', icon: <><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></>, label: 'Property Rent' },
                                 ].map(type => (
                                     <button
                                         key={type.id}

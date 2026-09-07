@@ -14,7 +14,7 @@ const AttendanceReports = () => {
     const fetchEvents = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:8081/api/events", {
+        const response = await axios.get("https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/events", {
           headers: { Authorization: `Bearer ${token}` }
         });
         
@@ -42,7 +42,7 @@ const AttendanceReports = () => {
       setLoadingRoster(true);
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get(`http://localhost:8081/api/attendance/event/${selectedEvent.eventId}`, {
+        const response = await axios.get(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/attendance/event/${selectedEvent.eventId}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setRoster(response.data);

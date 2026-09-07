@@ -15,9 +15,13 @@
   position: relative;
 }
 
-/* ---- Auth pages (Login): no sidebar flex, full screen ---- */
+/* ---- Auth pages (Login/Landing): no sidebar flex, full screen ---- */
 .auth-layout {
   display: block;
+}
+
+.auth-layout .main-content {
+  padding: 0;
 }
 
 /* ---- Global Top Bar for Branch Selector ---- */

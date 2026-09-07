@@ -9,6 +9,7 @@ import Sidebar from "./components/Sidebar";
 import BranchSelector from "./components/BranchSelector";
 
 import Home from "./pages/Home";
+import Landing from "./pages/Landing";
 
 // Admin Pages
 import SuperPlusAdmin from "./pages/SuperPlusAdmin";
@@ -24,6 +25,8 @@ import Families from "./pages/Families";
 import Events from "./pages/Events";
 import Accounting from "./pages/Accounting";
 import Assets from "./pages/Assets"; // ✅ Imported Asset Management
+import Leases from "./pages/Leases";
+import DailyContributions from "./pages/DailyContributions";
 import Donations from "./pages/Donations";
 import Documents from "./pages/Documents";
 import Forms from "./pages/Forms"; // ✅ Added Forms import
@@ -90,7 +93,7 @@ function AppContent() {
       <div className="main-content">
         {/* Branch Selector was moved to Home.js per user request */}
         <Routes>
-          <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<Home />} />
 
@@ -111,6 +114,8 @@ function AppContent() {
           <Route path="/events" element={<ProtectedRoute allowedRoles={["EVENTS"]}><Events /></ProtectedRoute>} />
           <Route path="/accounting" element={<ProtectedRoute allowedRoles={["ACCOUNTING"]}><Accounting /></ProtectedRoute>} />
           <Route path="/assets" element={<ProtectedRoute allowedRoles={["INVENTORY"]}><Assets /></ProtectedRoute>} />
+          <Route path="/leases" element={<ProtectedRoute allowedRoles={["ACCOUNTING"]}><Leases /></ProtectedRoute>} />
+          <Route path="/daily-contributions" element={<ProtectedRoute allowedRoles={["ACCOUNTING"]}><DailyContributions /></ProtectedRoute>} />
           <Route path="/donations" element={<ProtectedRoute allowedRoles={["ACCOUNTING"]}><Donations /></ProtectedRoute>} />
           <Route path="/documents" element={<ProtectedRoute allowedRoles={["DOCUMENTS"]}><Documents /></ProtectedRoute>} />
           <Route path="/forms" element={<ProtectedRoute allowedRoles={["FORMS"]}><Forms /></ProtectedRoute>} />

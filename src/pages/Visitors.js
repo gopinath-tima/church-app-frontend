@@ -45,7 +45,7 @@ const Visitors = () => {
     setErrorMessage('');
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:8081/api/visitors', formData, {
+      await axios.post('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/visitors', formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setSuccessMessage(`Successfully registered visitor: ${formData.firstName} ${formData.lastName}!`);

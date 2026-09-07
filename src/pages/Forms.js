@@ -55,7 +55,7 @@ const Forms = () => {
     try {
       const token = localStorage.getItem("token") || localStorage.getItem("jwt");
       const config = token ? { headers: { Authorization: `Bearer ${token}` } } : {};
-      const response = await axios.get('http://localhost:8081/api/members', config);
+      const response = await axios.get('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members', config);
       const mData = response.data.content ? response.data.content : response.data;
       setMembers(Array.isArray(mData) ? mData : []);
     } catch (error) {

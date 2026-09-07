@@ -52,7 +52,7 @@ const Assets = () => {
         try {
             setLoading(true);
             const headers = getAuthHeaders();
-            const res = await axios.get('http://localhost:8081/api/assets', { headers: headers || {} });
+            const res = await axios.get('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/assets', { headers: headers || {} });
             setAssets(res.data || []);
         } catch (err) {
             console.error("Error fetching assets:", err);
@@ -108,7 +108,7 @@ const Assets = () => {
         setHistoryLoading(true);
         try {
             const headers = getAuthHeaders();
-            const res = await axios.get(`http://localhost:8081/api/assets/${asset.assetId}/history`, { headers: headers || {} });
+            const res = await axios.get(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/assets/${asset.assetId}/history`, { headers: headers || {} });
             setAssetHistory(res.data || []);
         } catch (err) {
             console.error("Error fetching history:", err);
@@ -137,9 +137,9 @@ const Assets = () => {
             };
 
             if (isEditing) {
-                await axios.put(`http://localhost:8081/api/assets/${currentAssetId}`, payload, { headers: headers || {} });
+                await axios.put(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/assets/${currentAssetId}`, payload, { headers: headers || {} });
             } else {
-                await axios.post('http://localhost:8081/api/assets', payload, { headers: headers || {} });
+                await axios.post('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/assets', payload, { headers: headers || {} });
             }
             setShowModal(false);
             fetchAssets();
@@ -154,7 +154,7 @@ const Assets = () => {
         if (!window.confirm("Are you sure you want to permanently delete this asset?")) return;
         try {
             const headers = getAuthHeaders();
-            await axios.delete(`http://localhost:8081/api/assets/${id}`, { headers: headers || {} });
+            await axios.delete(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/assets/${id}`, { headers: headers || {} });
             fetchAssets();
         } catch (err) {
             console.error("Error deleting asset:", err);

@@ -58,7 +58,7 @@ function Events() {
     const headers = getAuthHeaders();
     if (!headers) { alert("Please log in to load events."); return; }
     try {
-      const res = await axios.get('http://localhost:8081/api/events', { headers });
+      const res = await axios.get('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/events', { headers });
       setEvents(res.data);
     } catch (err) {
       if (err.response?.status === 401 || err.response?.status === 403) alert("Unauthorized. Please log in again.");
@@ -70,7 +70,7 @@ function Events() {
     const headers = getAuthHeaders();
     if (!headers) return;
     try {
-      const res = await axios.get('http://localhost:8081/api/sunday-school/teachers', { headers });
+      const res = await axios.get('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/sunday-school/teachers', { headers });
       setTeachers(res.data);
     } catch (err) {
       console.error("Error fetching Sunday School teachers:", err);
@@ -172,8 +172,8 @@ function Events() {
     const headers = getAuthHeaders();
     if (!headers) return alert("Please log in.");
     try {
-      if (isEditMode) await axios.put(`http://localhost:8081/api/events/update/${currentEventId}`, formData, { headers });
-      else await axios.post('http://localhost:8081/api/events/add', formData, { headers });
+      if (isEditMode) await axios.put(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/events/update/${currentEventId}`, formData, { headers });
+      else await axios.post('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/events/add', formData, { headers });
       setIsModalOpen(false);
       fetchEvents();
     } catch (err) { alert("Error saving event: " + (err.response?.data || err.message)); }
@@ -184,7 +184,7 @@ function Events() {
     const headers = getAuthHeaders();
     if (!headers) { alert("Please log in."); return; }
     try {
-      await axios.delete(`http://localhost:8081/api/events/delete/${id}`, { headers });
+      await axios.delete(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/events/delete/${id}`, { headers });
       fetchEvents();
     } catch (err) {
       const s = err.response?.status;

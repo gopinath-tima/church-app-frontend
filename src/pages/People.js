@@ -21,8 +21,8 @@ const AuthenticatedAvatar = ({ memberId, firstName, lastName, photoUrl, photoCon
                     localStorage.getItem("accessToken");
                 
                 const url = photoUrl 
-                    ? `http://localhost:8081${photoUrl}` 
-                    : `http://localhost:8081/api/members/${memberId}/photo`;
+                    ? `https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net${photoUrl}` 
+                    : `https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members/${memberId}/photo`;
 
                 const response = await axios.get(url, {
                     headers: token ? { Authorization: `Bearer ${token}` } : {},
@@ -109,7 +109,7 @@ const People = () => {
             const headers = getAuthHeaders();
             
             // If no token, we can still try, but the backend may reject it for the full list
-            const res = await axios.get('http://localhost:8081/api/members', { headers: headers || {} });
+            const res = await axios.get('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members', { headers: headers || {} });
             
             // Extract the actual list of members. Handle both direct list and paginated response.
             let memberData = res.data;
@@ -122,7 +122,7 @@ const People = () => {
             // If the main list fails (common if unauthorized), try the search endpoint with an empty string
             // as it has 'permitAll' in security config
             try {
-                const res = await axios.get('http://localhost:8081/api/members/search?type=name&value=');
+                const res = await axios.get('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members/search?type=name&value=');
                 setMembers(Array.isArray(res.data) ? res.data : []);
             } catch (searchErr) {
                 setMembers([]);
@@ -134,7 +134,7 @@ const People = () => {
 
     const handleViewClick = async (id) => {
         try {
-            const res = await axios.get(`http://localhost:8081/api/members/${id}`);
+            const res = await axios.get(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members/${id}`);
             setViewMember(res.data);
             // Scroll to view if needed, but it will be at the top anyway
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -148,7 +148,7 @@ const People = () => {
 
         const headers = getAuthHeaders();
         try {
-            await axios.delete(`http://localhost:8081/api/members/delete/${id}`, { headers });
+            await axios.delete(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members/delete/${id}`, { headers });
             alert("Member deleted successfully.");
             setMembers(prev => prev.filter(m => m.memberId !== id));
             if (viewMember?.memberId === id) setViewMember(null);

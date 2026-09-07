@@ -104,7 +104,7 @@ const VisitorProfile = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem("token");
-      const response = await axios.get(`http://localhost:8081/api/visitors/${id}`, {
+      const response = await axios.get(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/visitors/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setVisitor(response.data);
@@ -120,7 +120,7 @@ const VisitorProfile = () => {
   const fetchFollowUps = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get(`http://localhost:8081/api/visitors/${id}/follow-ups`, {
+      const response = await axios.get(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/visitors/${id}/follow-ups`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setFollowUps(response.data);
@@ -133,7 +133,7 @@ const VisitorProfile = () => {
     try {
       const token = localStorage.getItem("token");
       const updated = { ...visitor, status: newStatus };
-      await axios.put(`http://localhost:8081/api/visitors/${id}`, updated, {
+      await axios.put(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/visitors/${id}`, updated, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setVisitor(updated);
@@ -147,7 +147,7 @@ const VisitorProfile = () => {
     if (!window.confirm("Are you sure you want to convert this visitor to an active member?")) return;
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.post(`http://localhost:8081/api/visitors/${id}/convert`, {}, {
+      const response = await axios.post(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/visitors/${id}/convert`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (response.data) {
@@ -170,7 +170,7 @@ const VisitorProfile = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      await axios.post(`http://localhost:8081/api/visitors/${id}/follow-ups`, followUpForm, {
+      await axios.post(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/visitors/${id}/follow-ups`, followUpForm, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setIsAddingFollowUp(false);
@@ -196,7 +196,7 @@ const VisitorProfile = () => {
     try {
       const token = localStorage.getItem("token");
       const updated = { ...followUp, status: 'Completed' };
-      await axios.put(`http://localhost:8081/api/visitors/follow-ups/${followUp.id}`, updated, {
+      await axios.put(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/visitors/follow-ups/${followUp.id}`, updated, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchFollowUps();

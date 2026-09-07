@@ -129,7 +129,7 @@ const VisitorList = () => {
   const fetchVisitors = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("http://localhost:8081/api/visitors", {
+      const response = await axios.get("https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/visitors", {
         headers: { Authorization: `Bearer ${token}` }
       });
       setVisitors(response.data);
@@ -141,7 +141,7 @@ const VisitorList = () => {
   const fetchMembers = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("http://localhost:8081/api/members", {
+      const response = await axios.get("https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members", {
         headers: { Authorization: `Bearer ${token}` }
       });
       let memberData = response.data;
@@ -152,7 +152,7 @@ const VisitorList = () => {
     } catch (err) {
       console.error("Error fetching members, attempting fallback search...", err);
       try {
-        const response = await axios.get("http://localhost:8081/api/members/search?type=name&value=");
+        const response = await axios.get("https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members/search?type=name&value=");
         setMembers(Array.isArray(response.data) ? response.data : []);
       } catch (fallbackErr) {
         setMembers([]);
@@ -163,7 +163,7 @@ const VisitorList = () => {
   const fetchReports = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("http://localhost:8081/api/visitors/reports", {
+      const response = await axios.get("https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/visitors/reports", {
         headers: { Authorization: `Bearer ${token}` }
       });
       setReports(response.data);
@@ -178,7 +178,7 @@ const VisitorList = () => {
       const token = localStorage.getItem("token");
       const visitor = visitors.find(v => v.id === visitorId);
       const updated = { ...visitor, status: newStatus };
-      await axios.put(`http://localhost:8081/api/visitors/${visitorId}`, updated, {
+      await axios.put(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/visitors/${visitorId}`, updated, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchVisitors();
@@ -193,7 +193,7 @@ const VisitorList = () => {
     if (!window.confirm(`Are you sure you want to convert ${firstName} ${lastName} to an active member?`)) return;
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.post(`http://localhost:8081/api/visitors/${visitorId}/convert`, {}, {
+      const response = await axios.post(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/visitors/${visitorId}/convert`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (response.data) {
@@ -218,7 +218,7 @@ const VisitorList = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      await axios.post("http://localhost:8081/api/visitors", visitorForm, {
+      await axios.post("https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/visitors", visitorForm, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -248,7 +248,7 @@ const VisitorList = () => {
   const handleViewClick = async (memberId) => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get(`http://localhost:8081/api/members/${memberId}`, {
+      const res = await axios.get(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members/${memberId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setViewMember(res.data);
@@ -265,7 +265,7 @@ const VisitorList = () => {
     if (!window.confirm("Are you sure you want to permanently delete this member?")) return;
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:8081/api/members/delete/${id}`, {
+      await axios.delete(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members/delete/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       alert("Member deleted successfully.");

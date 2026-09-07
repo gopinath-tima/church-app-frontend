@@ -19,8 +19,8 @@ const AuthenticatedAvatar = ({ memberId, firstName, lastName, photoUrl, photoCon
                     localStorage.getItem("accessToken");
                 
                 const url = photoUrl 
-                    ? `http://localhost:8081${photoUrl}` 
-                    : `http://localhost:8081/api/members/${memberId}/photo`;
+                    ? `https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net${photoUrl}` 
+                    : `https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members/${memberId}/photo`;
 
                 const response = await axios.get(url, {
                     headers: token ? { Authorization: `Bearer ${token}` } : {},
@@ -128,7 +128,7 @@ const Documents = () => {
         const headers = getAuthHeaders();
         if (!headers) return;
         try {
-            const res = await axios.get('http://localhost:8081/api/documents', { headers });
+            const res = await axios.get('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/documents', { headers });
             setDocuments(res.data || []);
         } catch (err) {
             console.error("Error fetching documents:", err);
@@ -157,7 +157,7 @@ const Documents = () => {
         setIsSearchingMember(true);
         const headers = getAuthHeaders();
         try {
-            const res = await axios.get(`http://localhost:8081/api/members/search?type=all&value=${term}`, { headers });
+            const res = await axios.get(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/members/search?type=all&value=${term}`, { headers });
             setMemberSearchResults(Array.isArray(res.data) ? res.data : []);
         } catch (err) {
             console.error("Error searching members:", err);
@@ -202,7 +202,7 @@ const Documents = () => {
         }
 
         try {
-            await axios.post('http://localhost:8081/api/documents/upload', uploadData, {
+            await axios.post('https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/documents/upload', uploadData, {
                 headers: {
                     ...headers,
                     'Content-Type': 'multipart/form-data'
@@ -222,7 +222,7 @@ const Documents = () => {
         setIsLoadingPreview(true);
         const headers = getAuthHeaders();
         try {
-            const res = await axios.get(`http://localhost:8081/api/documents/${doc.id}/download`, {
+            const res = await axios.get(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/documents/${doc.id}/download`, {
                 headers,
                 responseType: 'blob'
             });
@@ -246,7 +246,7 @@ const Documents = () => {
     const handleDownload = async (doc) => {
         const headers = getAuthHeaders();
         try {
-            const res = await axios.get(`http://localhost:8081/api/documents/${doc.id}/download`, {
+            const res = await axios.get(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/documents/${doc.id}/download`, {
                 headers,
                 responseType: 'blob'
             });
@@ -268,7 +268,7 @@ const Documents = () => {
         if (!window.confirm("Are you sure you want to delete this document permanently?")) return;
         const headers = getAuthHeaders();
         try {
-            await axios.delete(`http://localhost:8081/api/documents/${docId}`, { headers });
+            await axios.delete(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/documents/${docId}`, { headers });
             if (previewDoc && previewDoc.id === docId) {
                 handleClosePreview();
             }
