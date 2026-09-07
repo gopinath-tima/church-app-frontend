@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
 function Alerts() {
@@ -16,11 +16,7 @@ function Alerts() {
         return token ? { Authorization: `Bearer ${token}` } : null;
     };
 
-    useEffect(() => {
-        fetchMembers();
-    }, []);
-
-    const fetchMembers = async () => {
+    const fetchMembers = useCallback(async () => {
         const headers = getAuthHeaders();
         if (!headers) {
             setIsLoading(false);
@@ -36,7 +32,11 @@ function Alerts() {
         } finally {
             setIsLoading(false);
         }
-    };
+    }, []);
+
+    useEffect(() => {
+        fetchMembers();
+    }, [fetchMembers]);
 
     const isDateInDays = (dateValue, offsetDays) => {
         if (!dateValue) return false;

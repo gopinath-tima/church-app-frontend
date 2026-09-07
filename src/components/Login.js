@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
 import "./Login.css";
 
 function Login() {
@@ -21,9 +20,6 @@ function Login() {
       if (response.ok) {
         const token = await response.text();
         localStorage.setItem("token", token);
-
-        const decodedToken = jwtDecode(token);
-        const roles = decodedToken.roles || []; // ✅ Read the Array of roles
 
         // ✅ Route the user directly to the generic Home landing page
         navigate("/home");

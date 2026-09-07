@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import './Branches.css';
 
@@ -29,16 +29,12 @@ const Branches = () => {
         status: 'Active'
     });
 
-    useEffect(() => {
-        fetchBranches();
-    }, []);
-
     const getAuthHeaders = () => {
         const token = localStorage.getItem("token");
         return { headers: { Authorization: `Bearer ${token}` } };
     };
 
-    const fetchBranches = async () => {
+    const fetchBranches = useCallback(async () => {
         try {
             setLoading(true);
             const response = await axios.get(`${API_BASE_URL}/branches`, getAuthHeaders());
@@ -50,7 +46,11 @@ const Branches = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, []);
+
+    useEffect(() => {
+        fetchBranches();
+    }, [fetchBranches]);
 
     const handleOpenModal = (branch = null) => {
         if (branch) {

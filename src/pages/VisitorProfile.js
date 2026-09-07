@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './VisitorProfile.css';
@@ -95,12 +95,7 @@ const VisitorProfile = () => {
     assignee: ''
   });
 
-  useEffect(() => {
-    fetchVisitorDetails();
-    fetchFollowUps();
-  }, [id]);
-
-  const fetchVisitorDetails = async () => {
+  const fetchVisitorDetails = useCallback(async () => {
     try {
       setLoading(true);
       const token = localStorage.getItem("token");
@@ -115,9 +110,9 @@ const VisitorProfile = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
 
-  const fetchFollowUps = async () => {
+  const fetchFollowUps = useCallback(async () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(`https://church-back-gabqhtdphaeshbaf.westus3-01.azurewebsites.net/api/visitors/${id}/follow-ups`, {
@@ -127,7 +122,12 @@ const VisitorProfile = () => {
     } catch (err) {
       console.error("Error fetching follow-ups", err);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    fetchVisitorDetails();
+    fetchFollowUps();
+  }, [id, fetchVisitorDetails, fetchFollowUps]);
 
   const handleUpdateVisitorStatus = async (newStatus) => {
     try {
